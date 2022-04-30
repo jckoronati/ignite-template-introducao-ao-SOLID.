@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Introdução ao SOLID - API Documentation",
+        "description": "API Desenvolvida para treinar e estudar os conceitos SOLID junto com Node JS + TS + Express",
+        "version": "1.0.0",
+        "contact": {
+            "email": "julio.koronati@gmail.com"
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": ["Users"],
+                "summary": "User post",
+                "description": "Enable to create a new User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Júlio Cezar",
+                                    "description": "julio.koronati@gmail.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch": {
+                "tags": ["Users"],
+                "summary": "Turn on admin",
+                "description": "Get user id and turn he on admin",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "description": "Universal ID of User",
+                        "required": "true",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User turned on admin"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    }
+                }
+            }
+        }
+    }
+}

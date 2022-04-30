@@ -11,7 +11,9 @@
     "paths": {
         "/users": {
             "post": {
-                "tags": ["Users"],
+                "tags": [
+                    "Users"
+                ],
                 "summary": "User post",
                 "description": "Enable to create a new User",
                 "requestBody": {
@@ -23,13 +25,13 @@
                                     "name": {
                                         "type": "string"
                                     },
-                                    "description": {
+                                    "email": {
                                         "type": "string"
                                     }
                                 },
                                 "example": {
                                     "name": "Júlio Cezar",
-                                    "description": "julio.koronati@gmail.com"
+                                    "email": "julio.koronati@gmail.com"
                                 }
                             }
                         }
@@ -43,11 +45,42 @@
                         "description": "User already exists"
                     }
                 }
+            },
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user list by admin",
+                "description": "This route need a valid admin profile to retrive with success users list on api, the admin id needs to be in request headers.",
+                "required": "true",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "user_id",
+                        "required": "true",
+                        "description": "Universal ID of User",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success to get users"
+                    },
+                    "400": {
+                        "description": "Unauthorized user or not exist"
+                    }
+                }
             }
         },
         "/users/{user_id}/admin": {
             "patch": {
-                "tags": ["Users"],
+                "tags": [
+                    "Users"
+                ],
                 "summary": "Turn on admin",
                 "description": "Get user id and turn he on admin",
                 "parameters": [
@@ -75,7 +108,9 @@
         },
         "/users/{user_id}": {
             "get": {
-                "tags": ["Users"],
+                "tags": [
+                    "Users"
+                ],
                 "summary": "User data",
                 "description": "Get user id and show profile",
                 "parameters": [

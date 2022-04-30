@@ -72,6 +72,34 @@
                     }
                 }
             }
+        },
+        "/users/{user_id}": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "User data",
+                "description": "Get user id and show profile",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "description": "Universal ID of User",
+                        "required": "true",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "User not found!"
+                    }
+                }
+            }
         }
     }
 }
